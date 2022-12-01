@@ -1,0 +1,8 @@
+className: LoginLogBuilder
+
+members:
+Status status
+LoginType type
+Administrator administrator
+String username
+String details
