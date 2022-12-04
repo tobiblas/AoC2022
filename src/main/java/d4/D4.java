@@ -10,7 +10,7 @@ public class D4 extends Task {
 	public static void main(String[] args) {
 		D4 day = new D4();
 		List<String> list = day.getStrings();
-		//p1(list);
+		p1(list);
 		p2(list);
 	}
 
@@ -39,11 +39,19 @@ public class D4 extends Task {
 		for (String str : list) {
 			String first = str.split(",")[0];
 			String second = str.split(",")[1];
-			if (overlap(first, second)) {
+			if (overlap2(first, second)) {
 				count++;
 			}
 		}
 		System.out.println(count);
+	}
+
+	private static boolean overlap2(String first, String second) {
+		int x1 = Integer.parseInt(first.split("-")[0]);
+		int y1 = Integer.parseInt(first.split("-")[1]);
+		int x2 = Integer.parseInt(second.split("-")[0]);
+		int y2 = Integer.parseInt(second.split("-")[1]);
+		return !(y1 < x2 || y2 < x1);
 	}
 
 	private static boolean overlap(String first, String second) {
