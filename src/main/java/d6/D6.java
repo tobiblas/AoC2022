@@ -1,13 +1,13 @@
-package template;
+package d6;
 
 import java.util.List;
 
 import util.Task;
 
-public class D4 extends Task {
+public class D6 extends Task {
 
 	public static void main(String[] args) {
-		D4 day = new D4();
+		D6 day = new D6();
 		List<String> list = day.getStrings();
 		day.p1(list);
 		day.p2(list);
