@@ -4,10 +4,10 @@ import java.util.List;
 
 import util.Task;
 
-public class D4 extends Task {
+public class D9 extends Task {
 
 	public static void main(String[] args) {
-		D4 day = new D4();
+		D9 day = new D9();
 		List<String> list = day.getStrings();
 		day.p1(list);
 		day.p2(list);
