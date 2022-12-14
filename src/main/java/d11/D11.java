@@ -89,12 +89,12 @@ public class D11 extends Task {
 					}
 				}
 			}
-			//if (round % 50 == 0)
-			System.out.println("Round " + round + " ");
+			if (round % 100 == 0)
+				System.out.println("Round " + round + " ");
 			//System.out.println("Item0: " + item0.op);
 //			pattern += '\n';
 //			System.out.println(pattern);
-			printStatus(monkeys);
+			//printStatus(monkeys);
 		}
 
 		Collections.sort(monkeys, new Comparator<Monkey>() {
