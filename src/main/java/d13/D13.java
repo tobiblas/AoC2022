@@ -1,6 +1,7 @@
 package d13;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 import util.Task;
@@ -9,10 +10,71 @@ public class D13 extends Task {
 
 	public static void main(String[] args) {
 		D13 day = new D13();
-		List<String> list = day.getStrings();
-		day.p1(list);
+		List<String> list = day.getStringsNoEmptyRows();
+		//day.p1(list);
 		day.p2(list);
 	}
+
+	private void p2(List<String> list) {
+		list.sort(new Comparator<String>() {
+
+			@Override
+			public int compare(String o1, String o2) {
+				Result r = okOrder(o1, o2);
+				return (r == Result.CONTINUE || r == Result.LEFT_RAN_OUT) ? -1 : 1;
+			}
+		});
+
+		int sum = 1;
+		for (int i = 0; i < list.size(); ++i) {
+			String str = list.get(i);
+			System.out.println(str);
+			if (str.equals("[[2]]")) {
+				sum *= (i + 1);
+			}
+			if (str.equals("[[6]]")) {
+				sum *= (i + 1);
+			}
+		}
+		System.out.println(sum);
+
+//		Correct order
+//		[]
+//		[[]]
+//		[[[]]]
+//		[1,1,3,1,1]
+//		[1,1,5,1,1]
+//		[[1],[2,3,4]]
+//		[1,[2,[3,[4,[5,6,0]]]],8,9]
+//		[1,[2,[3,[4,[5,6,7]]]],8,9]
+//		[[1],4]
+//		[[2]]
+//		[3]
+//		[[4,4],4,4]
+//		[[4,4],4,4,4]
+//		[[6]]
+//		[7,7,7]
+//		[7,7,7,7]
+//		[[8,7,6]]
+//		[9]
+	}
+
+//		[]
+//		[[]]
+//		[[[]]]
+//		[1,[2,[3,[4,[5,6,7]]]],8,9] fel
+//		[[1],[2,3,4]] fel 
+//		[[1],4] fel
+//		[1,1,3,1,1] 4
+//		[1,1,5,1,1] 5
+//		[1,[2,[3,[4,[5,6,0]]]],8,9] ok
+//		[3]
+//		[[4,4],4,4]
+//		[[4,4],4,4,4]
+//		[7,7,7]
+//		[7,7,7,7]
+//		[[8,7,6]]
+//		[9]
 
 	private void p1(List<String> list) {
 		int count = 0;
@@ -60,8 +122,6 @@ public class D13 extends Task {
 		//System.out.println();
 		List<String> itemsFirst = getItems(first.substring(1, first.length() - 1));
 		List<String> itemsSecond = getItems(second.substring(1, second.length() - 1));
-		boolean leftRanOut = false;
-		boolean rightRanOut = false;
 		for (int i = 0; i < itemsFirst.size(); ++i) {
 			String f = itemsFirst.get(i);
 			String s = "";
@@ -105,7 +165,12 @@ public class D13 extends Task {
 				} else {
 					s = "[" + s + "]";
 				}
-				return okOrder(f, s);
+				Result r = okOrder(f, s);
+				if (r == Result.CONTINUE) {
+					continue;
+				} else {
+					return r;
+				}
 			} else {
 				Result r = okOrder(f, s);
 				if (r == Result.CONTINUE) {
@@ -203,10 +268,6 @@ public class D13 extends Task {
 
 	private boolean rightBracket(char charAt) {
 		return charAt == 93;
-	}
-
-	private void p2(List<String> list) {
-
 	}
 
 }
