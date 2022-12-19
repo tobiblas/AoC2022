@@ -59,4 +59,18 @@ public class InputReader {
 		}
 		return list;
 	}
+
+	public String getAllInputAsString() {
+		String all = "";
+		try (BufferedReader reader = new BufferedReader(new FileReader(inFile))) {
+			String line = reader.readLine();
+			while (line != null) {
+				all += line + "\n";
+				line = reader.readLine();
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return all;
+	}
 }

@@ -14,6 +14,10 @@ public class Task {
 		inputReader = new InputReader(inFile);
 	}
 
+	public String getAll() {
+		return inputReader.getAllInputAsString();
+	}
+
 	public List<String> getStrings() {
 		return inputReader.getStringList(true);
 	}
